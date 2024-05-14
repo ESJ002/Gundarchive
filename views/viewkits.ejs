@@ -1,0 +1,24 @@
+<h1>View Kits</h1>
+
+
+<% for (let kit of kits) {%>
+
+
+    <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
+    
+        <% let kitName = kit.name
+            if (kitName.length > 28) {
+                kitName = kitName.substring(0, 26) + '...'
+            } %>
+
+        <p class="kit-name"><%= kitName %></p>
+        <p><%= kit.gradeslogo%></p>
+        <p><%= kit.serieslogo%></p>
+        <img src="<%= kit.grades_logo%>" alt="<%= %>" class="grade-logo">
+        <img src="<%= kit.series_logo%>" alt="<%= %>" class="series-logo">
+        
+    <% } %>
+
+
+
+
