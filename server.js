@@ -12,7 +12,7 @@ const sessionRouter = require('./routes/session_router')
 const homeRouter = require('./routes/home_router')
 const viewRouter = require('./routes/view_router')
 const adminRouter = require('./routes/admin_router')
-const setCurrentUser = require('./middlewares/set_current_user')
+const setCurrentUser = require('./middlewares/set_current_user') 
 
 app.set('view engine', 'ejs')
 

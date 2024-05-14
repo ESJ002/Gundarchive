@@ -26,22 +26,26 @@ create TABLE favourites (
     fav_user_id INTEGER NOT NULL,
     fav_kit_id INTEGER NOT NULL,
     FOREIGN KEY (fav_user_id) REFERENCES users (id) ON DELETE CASCADE,
-    FOREIGN KEY (fav_kit_sku) REFERENCES kits (id) ON DELETE CASCADE 
+    FOREIGN KEY (fav_kit_id) REFERENCES kits (id) ON DELETE CASCADE 
 );
 
 /* Can add multiple kits of the same type */
 create TABLE backlog (
     id SERIAL PRIMARY KEY,
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-    FOREIGN KEY (kit_id) REFERENCES kits (id) ON DELETE CASCADE 
-)
+    back_user_id INTEGER NOT NULL,
+    back_kit_id INTEGER NOT NULL,
+    FOREIGN KEY (back_user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (back_kit_id) REFERENCES kits (id) ON DELETE CASCADE 
+);
 
 /* Can add multiple kits of the same type */
 create TABLE completed (
     id SERIAL PRIMARY KEY,
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-    FOREIGN KEY (kit_id) REFERENCES kits (id) ON DELETE CASCADE 
-)
+    comp_user_id INTEGER NOT NULL,
+    comp_kit_id INTEGER NOT NULL,
+    FOREIGN KEY (comp_user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (comp_kit_id) REFERENCES kits (id) ON DELETE CASCADE 
+);
 
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
@@ -63,6 +67,36 @@ CREATE TABLE grades (
     abbreviation TEXT,
     logo_url TEXT
 );
+
+
+SELECT 
+    favourites.fav_kit_id,
+    kits.id, 
+    kits.name, 
+    grade_id, 
+    series_id,
+    date,
+    sku,
+    kits.image_url, 
+    series.logo_url series_logo,
+    grades.logo_url grades_logo,
+    grades.abbreviation grades_abbreviation
+       FROM 
+    favourites
+    JOIN kits
+    ON (favourites.fav_kit_id = kits.id)
+    JOIN
+    series 
+    ON (kits.series_id = series.id)
+    JOIN grades
+    ON (kits.grade_id = grades.id)
+
+    WHERE favourites.fav_user_id = $1
+
+    ORDER BY favourites.id desc;
+    
+
+
 
 update kits set image_url = 'https://www.rhyplabuilds.com.au/assets/full/G5061582.jpg?20211119120516' where sku = 'G5061582';
 

@@ -10,18 +10,21 @@
 <body>
     <div class="page-container">
 
-<a href="/newkit"><button>New Kit</button></a>
-<a href="/viewkits"><button>View Kits</button></a>
+<img src="/IMG_2229.PNG" alt="" class="page-logo">
+
+<div class="header">
+    <% if (isAdmin) {%>
+
+        <a href="/newkit"><button>NEW</button></a> 
+        <%}%>
+<a href="/viewkits"><button>KITS</button></a>
 <% if (isLoggedIn) {%>
 
-    <a href="/profile/<%=currentUser.username%>"><button>View User</button></a>
+    <a href="/profile/<%=currentUser.username%>"><button>USER</button></a>
 
     <form action="/logout?_method=delete" method="post" class="log">
         <button>LOGOUT</button>
     </form>
-
-
-    <p class="logged-in">LOGGED IN AS <%= currentUser.username %> </p>
     
 
     <%} else {%>
@@ -31,7 +34,8 @@
         </form>
         
     <%}%>
-
+    
+</div>
 
         <%- body %>
 

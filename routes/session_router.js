@@ -2,6 +2,7 @@ const express = require('express')
 const db = require('../db')
 const router = express.Router()
 const bcrypt = require('bcrypt')
+const createNewUser = require('../middlewares/create_new_user')
 
 router.get('/login', (req,res) => {
     res.render('login')
@@ -43,11 +44,28 @@ router.post('/login', (req,res) => {
             res.redirect(`/`)
 
         })
-
         
     })
     
 })
+
+
+router.get('/newuser', (req,res) => {
+
+    res.render(`newuser`)
+})
+
+router.post('/newuser', (req,res) => {
+
+    const username = req.body.username
+    const password = req.body.password
+
+    createNewUser(username, password)
+    res.redirect('/login')
+        
+    })
+    
+
 
 router.delete('/logout', (req,res) => {
     req.session.userID = null

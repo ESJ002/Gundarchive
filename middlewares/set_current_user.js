@@ -4,6 +4,7 @@ function setCurrentUser(req , res, next) {
     
     res.locals.currentUser = {}
     res.locals.isLoggedIn = false
+    res.locals.isAdmin = false
 
     if (!req.session.userID) {
         return next()
@@ -19,6 +20,10 @@ function setCurrentUser(req , res, next) {
         let user = result.rows[0]
         res.locals.currentUser = user
         res.locals.isLoggedIn = true
+
+        if (user.is_admin) {
+            res.locals.isAdmin = true
+        }
 
         next()
     })

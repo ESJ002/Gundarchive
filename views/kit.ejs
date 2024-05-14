@@ -1,17 +1,26 @@
 <h1>View Kit</h1>
 
 
+<% if (isLoggedIn) {%>
 
+<div class="header">
 <form action="/favourites" method="post">
     <input type="hidden" name="kitID" value ="<%= kit.id%>">
-    <input type="hidden" name="userID" value ="<%= currentUser.id%>">
     <input type="hidden" name="sku" value ="<%= kit.sku%>">
 
     <button>Add to Favourites</button>
 </form>
 
-<button>Add to Backlog</button>
+<form action="/backlog" method="post">
+    <input type="hidden" name="kitID" value ="<%= kit.id%>">
+    <input type="hidden" name="sku" value ="<%= kit.sku%>">
+
+    <button>Add to backlog</button>
+</form>
 <button>Completed</button>
+</div>
+
+<%}%>
 
 
 

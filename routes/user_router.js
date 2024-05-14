@@ -54,5 +54,99 @@ router.get('/profile/:username/favourites', (req,res) => {
     }) 
 })
 
+router.post('/backlog', (req,res) => {
+    const kitID = req.body.kitID
+
+    db.query(`INSERT INTO backlog (back_user_id, back_kit_id) VALUES ($1, $2)
+    ;`
+    
+    , [res.locals.currentUser.id, kitID], (err, result) => {
+        console.log(`${req.body.sku} added to backlog`);
+        res.redirect(`/kit/${req.body.sku}`)
+    })   
+    
+})  
+
+
+router.get('/profile/:username/backlog', (req,res) => {
+    db.query(`SELECT 
+    backlog.back_kit_id,
+    kits.id, 
+    kits.name, 
+    grade_id, 
+    series_id,
+    date,
+    sku,
+    kits.image_url, 
+    series.logo_url series_logo,
+    grades.logo_url grades_logo,
+    grades.abbreviation grades_abbreviation
+       FROM 
+    backlog
+    JOIN kits
+    ON (backlog.back_kit_id = kits.id)
+    JOIN
+    series 
+    ON (kits.series_id = series.id)
+    JOIN grades
+    ON (kits.grade_id = grades.id)
+
+    WHERE backlog.back_user_id = $1
+
+    ORDER BY backlog.id desc;`
+    
+    ,[res.locals.currentUser.id], (err, result) => {
+        const kits = result.rows
+        res.render('viewkits',{kits: kits})
+    }) 
+})
+
+router.post('/completed', (req,res) => {
+    const kitID = req.body.kitID
+
+    db.query(`INSERT INTO completed (comp_user_id, comp_kit_id) VALUES ($1, $2)
+    ;`
+    
+    , [res.locals.currentUser.id, kitID], (err, result) => {
+        console.log(`${req.body.sku} added to completed`);
+        res.redirect(`/kit/${req.body.sku}`)
+    })   
+    
+})  
+
+
+router.get('/profile/:username/backlog', (req,res) => {
+    db.query(`SELECT 
+    backlog.back_kit_id,
+    kits.id, 
+    kits.name, 
+    grade_id, 
+    series_id,
+    date,
+    sku,
+    kits.image_url, 
+    series.logo_url series_logo,
+    grades.logo_url grades_logo,
+    grades.abbreviation grades_abbreviation
+       FROM 
+    backlog
+    JOIN kits
+    ON (backlog.back_kit_id = kits.id)
+    JOIN
+    series 
+    ON (kits.series_id = series.id)
+    JOIN grades
+    ON (kits.grade_id = grades.id)
+
+    WHERE backlog.back_user_id = $1
+
+    ORDER BY backlog.id desc;`
+    
+    ,[res.locals.currentUser.id], (err, result) => {
+        const kits = result.rows
+        res.render('viewkits',{kits: kits})
+    }) 
+})
+
 module.exports = router
 
