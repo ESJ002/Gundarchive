@@ -4,13 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gundarchive</title>
+    <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <div class="page-container">
 
-<a href="/newkit">New Kit</a>
-<a href="/viewkits">View Kits</a>
+<a href="/newkit"><button>New Kit</button></a>
+<a href="/viewkits"><button>View Kits</button></a>
+<% if (isLoggedIn) {%>
+
+    <a href="/profile/<%=currentUser.username%>"><button>View User</button></a>
+
+    <form action="/logout?_method=delete" method="post" class="log">
+        <button>LOGOUT</button>
+    </form>
+
+
+    <p class="logged-in">LOGGED IN AS <%= currentUser.username %> </p>
+    
+
+    <%} else {%>
+
+        <form action="/login" method="get" class="log">
+            <button>LOGIN</button>
+        </form>
+        
+    <%}%>
 
 
         <%- body %>

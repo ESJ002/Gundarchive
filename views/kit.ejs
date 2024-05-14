@@ -1,18 +1,35 @@
 <h1>View Kit</h1>
 
-<button>Add to Favourites</button>
-<ul>
-    <li>Name</li>
-    <li>Image</li>
-    <li>Grade</li>
-    <li>Series</li>
-    <li>Date of Release</li>
-    <li>SKU</li>
-    <li>Instructions</li>
-</ul>
+
+
+<form action="/favourites" method="post">
+    <input type="hidden" name="kitID" value ="<%= kit.id%>">
+    <input type="hidden" name="userID" value ="<%= currentUser.id%>">
+    <input type="hidden" name="sku" value ="<%= kit.sku%>">
+
+    <button>Add to Favourites</button>
+</form>
 
 <button>Add to Backlog</button>
 <button>Completed</button>
+
+
+
+        <div class="logos">
+        <img src="<%= kit.grades_logo%>" alt="<%= %>" class="grade-logo">
+        <img src="<%= kit.series_logo%>" alt="<%= %>" class="series-logo">
+        </div>
+        <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
+        
+            <% let kitName = `${kit.grades_abbreviation} ${kit.name}`
+                if (kitName.length > 35) {
+                    kitName = kitName.substring(0, 32) + '...'
+                } %>
+            
+            <p class="kit-name"><%=kitName%></p>
+           
+
+
 
 
 
