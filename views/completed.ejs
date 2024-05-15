@@ -1,17 +1,17 @@
-
+<h1>COMPLETED</h1>
 <% if (kits.length === 0) {%>
 
-    <h2>ADD SOME KITS!</h2>
+    <h2>MAKE SOME KITS!</h2>
 
 <%}%>
 
-<div class="grid-container">
+<div class="backlog-container">
 
 <% for (let kit of kits) {%>
 
     <a href="/kit/<%=kit.sku%>">
-<div class="kit-container">
-    <div class="image-container">
+<div class="backlog-kit-container">
+    <div class="completed-image-container">
         <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
     </div>  
     <div class="info-container">
@@ -29,10 +29,16 @@
                 <img src="<%= kit.series_logo%>" alt="<%= %>">
             </div>
         </div>
-
+    </div>
+    <div class="buttons">
+        <form action="/completed?_method=delete" method="post" > 
+            <input type="hidden" name="compID" value ="<%=kit.comp_id%>" >
+            <button class="complete-remove">REMOVE FROM COMPLETED</button>
+        </form>
+    </div>
     
 
-    </div>
+
        
 </div>
 </a>

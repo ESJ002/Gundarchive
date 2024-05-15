@@ -38,15 +38,26 @@
         <% if (isLoggedIn) {%>
 
             <div class="header">
-            <form action="/favourites" method="post">
-                <input type="hidden" name="kitID" value ="<%= kit.id%>">
+                <% if (inFavourites) {%>
+            <form action="/favourites?_method=delete" method="post">
+                <input type="hidden" name="favID" value ="<%=favouriteID%>">
                 <input type="hidden" name="sku" value ="<%= kit.sku%>">
+            
+                <button>REMOVE FROM FAVOURITES</button>
+            </form>
+            <%} else {%>
+
+
+                 <form action="/favourites" method="post">
+                <input type="hidden" name="kitID" value ="<%= kit.id%>">
+                <input type="hidden" name="sku" value ="<%=kit.sku%>">
             
                 <button>ADD TO FAVOURITES</button>
             </form>
+            %> <%}%>
             
             <form action="/backlog" method="post">
-                <input type="hidden" name="kitID" value ="<%= kit.id%>">
+                <input type="hidden" name="kitID" value ="<%=kit.id%>">
                 <input type="hidden" name="sku" value ="<%= kit.sku%>">
             
                 <button>ADD TO BACKLOG</button>
@@ -54,6 +65,7 @@
             <form action="/completed" method="post">
                 <input type="hidden" name="kitID" value ="<%= kit.id%>">
                 <input type="hidden" name="sku" value ="<%= kit.sku%>">
+                <input type="hidden" name="fromBacklog" value ='false'>
             
                 <button>ADD TO COMPLETED</button>
             </form>

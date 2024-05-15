@@ -27,7 +27,28 @@ img {
     transition: width 0.3s, height 0.3s;
 }
 
-.image-container img {
+.backlog-image-container {
+  width: 150px;
+  height: 170px;
+  background-color: aqua;
+  display: flex;
+  padding: 2px;
+  transition: width 0.3s, height 0.3s;
+}
+
+.completed-image-container {
+  width: 150px;
+  height: 100px;
+  background-color: aqua;
+  display: flex;
+  padding: 2px;
+  transition: width 0.3s, height 0.3s;
+}
+
+
+.image-container img, 
+.backlog-image-container img, 
+.completed-image-container img {
   height: 100%;
   width: 100%;
   object-fit: contain;
@@ -46,19 +67,36 @@ img {
     font-family: 'orbitron';
 }
 
+.backlog-kit-container {
+  background-color: rgb(0, 0, 39);
+  border: 4px solid aqua;
+  color: aqua;
+  font-size: 2rem;
+  width: 850px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr;
+  transition: width 0.3s, font-size 0.3s;
+  font-family: 'orbitron';
+}
+
 .kit-container:hover {
   .image-container {
   height: 150px;
   width: 150px;
   transition: width 0.3s, height 0.3s;
  }
+}
 
+.backlog-kit-container:hover {
+  width: 900px;
 }
 
 .grid-container{ 
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 0 auto;
+  margin-top: 20px;
   grid-gap: 10px
 }
 
@@ -204,7 +242,7 @@ button {
 
     width: 900px;
     height: 900px;
-    transition: width 0.5s, height 0.5s;
+    transition: width 1s, height 1s;
     cursor: pointer;
 
   }
@@ -227,3 +265,12 @@ button {
    align-self: first baseline;
   }
  
+  .complete-remove {
+   margin-top: 12px;
+   margin-right: 12px;
+  }
+
+  .backlog-button {
+    margin-right: 8px;
+
+  }

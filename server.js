@@ -12,7 +12,9 @@ const sessionRouter = require('./routes/session_router')
 const homeRouter = require('./routes/home_router')
 const viewRouter = require('./routes/view_router')
 const adminRouter = require('./routes/admin_router')
-const setCurrentUser = require('./middlewares/set_current_user') 
+const setCurrentUser = require('./middlewares/set_current_user')
+const ensureLoggedIn = require('./middlewares/ensure_logged_in')
+const ensureAdmin = require('./middlewares/ensure_admin')
 
 app.set('view engine', 'ejs')
 
@@ -30,10 +32,13 @@ app.use(session({
 
 app.use(setCurrentUser)
 
-app.use(userRouter)
+
 app.use(homeRouter)
 app.use(viewRouter)
 app.use(sessionRouter)
+app.use(ensureLoggedIn)
+app.use(userRouter)
+app.use(ensureAdmin)
 app.use(adminRouter)
 
 app.listen(port, () => {

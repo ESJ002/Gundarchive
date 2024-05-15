@@ -28,7 +28,25 @@ router.get('/kit/:sku', (req, res) => {
     db.query(sql, [req.params.sku], (err,result) => {
         
         let kit = result.rows[0];
-        res.render('kit', {kit: kit})
+
+        db.query('SELECT * FROM favourites where fav_user_id = $1;', [res.locals.currentUser.id], (err,result) => {
+            let favourites = result.rows
+            let favouriteID = null
+            let inFavourites = false
+            for (let favourite of favourites) {
+                console.log(favourite.fav_kit_id);
+                console.log(kit.id)
+                if (favourite.fav_kit_id === kit.id) {
+                    console.log('match found!');
+                    inFavourites = true
+                    favouriteID = favourite.id
+                }
+            }
+            console.log(inFavourites);
+            console.log(favouriteID);
+            res.render('kit', {kit: kit, inFavourites: inFavourites, favouriteID: favouriteID})
+        })
+        
     })
 })
 
@@ -54,6 +72,8 @@ router.get('/viewkits', (req,res) => {
     
     , (err, result) => {
         const kits = result.rows
+        db.query
+
         res.render('viewkits',{kits: kits})
     }) 
 })

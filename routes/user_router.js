@@ -17,17 +17,27 @@ router.get('/profile/:username', (req,res) => {
 })
 
 router.post('/favourites', (req,res) => {
+    const currentuserID = res.locals.currentUser.id
     const kitID = req.body.kitID
 
     db.query(`INSERT INTO favourites (fav_user_id, fav_kit_id) VALUES ($1, $2)
     ;`
     
-    , [res.locals.currentUser.id, kitID], (err, result) => {
+    , [currentuserID, kitID], (err, result) => {
         console.log(`${req.body.sku} added to favourites`);
         res.redirect(`/kit/${req.body.sku}`)
+        
     })   
     
 })  
+
+router.delete('/favourites',(req,res) => {
+    console.log(req.body.favID);
+    db.query(`DELETE FROM favourites WHERE id = $1;`,[req.body.favID], (err, result) => {
+        if (err) console.log(err)
+        res.redirect(`/kit/${req.body.sku}`)
+        })
+})
 
 
 router.get('/profile/:username/favourites', (req,res) => {
@@ -59,6 +69,7 @@ router.get('/profile/:username/favourites', (req,res) => {
     
     ,[res.locals.currentUser.id], (err, result) => {
         const kits = result.rows
+
         res.render('viewkits',{kits: kits})
     }) 
 })
@@ -76,10 +87,17 @@ router.post('/backlog', (req,res) => {
     
 })  
 
+router.delete('/backlog',(req,res) => {
+    db.query(`DELETE FROM backlog WHERE id = $1`,[req.body.backID], (err, result) => {
+        res.redirect(`/profile/${res.locals.currentUser.username}/backlog`)
+        })
+})
+
 
 router.get('/profile/:username/backlog', (req,res) => {
     db.query(`SELECT 
     backlog.back_kit_id,
+    backlog.id backlog_id,
     kits.id, 
     kits.name, 
     grade_id, 
@@ -106,7 +124,7 @@ router.get('/profile/:username/backlog', (req,res) => {
     
     ,[res.locals.currentUser.id], (err, result) => {
         const kits = result.rows
-        res.render('viewkits',{kits: kits})
+        res.render('backlog',{kits: kits})
     }) 
 })
 
@@ -118,15 +136,29 @@ router.post('/completed', (req,res) => {
     
     , [res.locals.currentUser.id, kitID], (err, result) => {
         console.log(`${req.body.sku} added to completed`);
-        res.redirect(`/kit/${req.body.sku}`)
+        if (req.body.fromBacklog === 'true') {
+            db.query(`DELETE FROM backlog WHERE id = $1`,[req.body.backID], (err, result) => {
+            res.redirect(`/profile/${res.locals.currentUser.username}/backlog`)
+   
+            })
+        } else {
+            res.redirect(`/kit/${req.body.sku}`)
+        }
     })   
     
 })  
+
+router.delete('/completed',(req,res) => {
+    db.query(`DELETE FROM completed WHERE id = $1`,[req.body.compID], (err, result) => {
+        res.redirect(`/profile/${res.locals.currentUser.username}/completed`)
+        })
+})
 
 
 router.get('/profile/:username/completed', (req,res) => {
     db.query(`SELECT 
     completed.comp_kit_id,
+    completed.id comp_id,
     kits.id, 
     kits.name, 
     grade_id, 
@@ -153,7 +185,11 @@ router.get('/profile/:username/completed', (req,res) => {
     
     ,[res.locals.currentUser.id], (err, result) => {
         const kits = result.rows
-        res.render('viewkits',{kits: kits})
+
+      
+            res.render('completed',{kits: kits})
+
+        
     }) 
 })
 
