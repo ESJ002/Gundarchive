@@ -5,29 +5,41 @@
 
 <%}%>
 
+<div class="grid-container">
+
 <% for (let kit of kits) {%>
 
     <a href="/kit/<%=kit.sku%>">
 <div class="kit-container">
-    <div class="logos">
-    <img src="<%= kit.grades_logo%>" alt="<%= %>" class="grade-logo">
-    <img src="<%= kit.series_logo%>" alt="<%= %>" class="series-logo">
-    </div>
     <div class="image-container">
-    <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
+        <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
     </div>  
-    
+    <div class="info-container">
         <% let kitName = `${kit.grades_abbreviation} ${kit.name}`
-            if (kitName.length > 35) {
-                kitName = kitName.substring(0, 32) + '...'
-            } %>
-        
+        if (kitName.length > 35) {
+            kitName = kitName.substring(0, 32) + '...'
+        } %>
         <p class="kit-name"><%=kitName%></p>
+
+        <div class="logos">
+            <div class="grade-logo">
+                <img src="<%= kit.grades_logo%>" alt="<%= %>">
+            </div>
+            <div class="series-logo">
+                <img src="<%= kit.series_logo%>" alt="<%= %>">
+            </div>
+        </div>
+
+    
+
+    </div>
        
 </div>
 </a>
         
     <% } %>
+
+</div>
 
 
 

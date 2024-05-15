@@ -8,16 +8,21 @@
     <input type="hidden" name="kitID" value ="<%= kit.id%>">
     <input type="hidden" name="sku" value ="<%= kit.sku%>">
 
-    <button>Add to Favourites</button>
+    <button>ADD TO FAVOURITES</button>
 </form>
 
 <form action="/backlog" method="post">
     <input type="hidden" name="kitID" value ="<%= kit.id%>">
     <input type="hidden" name="sku" value ="<%= kit.sku%>">
 
-    <button>Add to backlog</button>
+    <button>ADD TO BACKLOG</button>
 </form>
-<button>Completed</button>
+<form action="/completed" method="post">
+    <input type="hidden" name="kitID" value ="<%= kit.id%>">
+    <input type="hidden" name="sku" value ="<%= kit.sku%>">
+
+    <button>ADD TO COMPLETED</button>
+</form>
 </div>
 
 <%}%>
@@ -29,13 +34,8 @@
         <img src="<%= kit.series_logo%>" alt="<%= %>" class="series-logo">
         </div>
         <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
-        
-            <% let kitName = `${kit.grades_abbreviation} ${kit.name}`
-                if (kitName.length > 35) {
-                    kitName = kitName.substring(0, 32) + '...'
-                } %>
             
-            <p class="kit-name"><%=kitName%></p>
+        <h2 class="kit-name"><%=`${kit.grades_abbreviation} ${kit.name}`%></h2>
            
 
 

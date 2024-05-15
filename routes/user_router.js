@@ -3,9 +3,18 @@ const db = require('../db')
 const router = express.Router()
 
 router.get('/profile/:username', (req,res) => {
-    
-    res.render('user')
-})  
+        db.query(`SELECT * FROM completed WHERE comp_user_id = $1` ,[res.locals.currentUser.id], (err, result) => {
+            const completedLength = result.rows.length
+
+            db.query(`SELECT * FROM backlog WHERE back_user_id = $1`,[res.locals.currentUser.id], (err, result) => {
+                const backlogLength = result.rows.length
+                db.query(`SELECT * FROM favourites WHERE fav_user_id = $1`,[res.locals.currentUser.id], (err, result) => {
+                    const favouritesLength = result.rows.length
+                    res.render('user', {completedLength: completedLength, backlogLength: backlogLength, favouritesLength: favouritesLength})
+                })
+            })
+        }) 
+})
 
 router.post('/favourites', (req,res) => {
     const kitID = req.body.kitID
@@ -115,9 +124,9 @@ router.post('/completed', (req,res) => {
 })  
 
 
-router.get('/profile/:username/backlog', (req,res) => {
+router.get('/profile/:username/completed', (req,res) => {
     db.query(`SELECT 
-    backlog.back_kit_id,
+    completed.comp_kit_id,
     kits.id, 
     kits.name, 
     grade_id, 
@@ -129,18 +138,18 @@ router.get('/profile/:username/backlog', (req,res) => {
     grades.logo_url grades_logo,
     grades.abbreviation grades_abbreviation
        FROM 
-    backlog
+    completed
     JOIN kits
-    ON (backlog.back_kit_id = kits.id)
+    ON (completed.comp_kit_id = kits.id)
     JOIN
     series 
     ON (kits.series_id = series.id)
     JOIN grades
     ON (kits.grade_id = grades.id)
 
-    WHERE backlog.back_user_id = $1
+    WHERE completed.comp_user_id = $1
 
-    ORDER BY backlog.id desc;`
+    ORDER BY completed.id desc;`
     
     ,[res.locals.currentUser.id], (err, result) => {
         const kits = result.rows

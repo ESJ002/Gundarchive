@@ -41,7 +41,7 @@ router.post('/login', (req,res) => {
             }
             
             req.session.userID = user.id
-            res.redirect(`/`)
+            res.redirect(`/profile/${user.username}`)
 
         })
         

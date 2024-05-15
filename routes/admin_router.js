@@ -25,7 +25,7 @@ router.post('/newkit', (req,res) => {
     `   
     db.query(sql, values, (err, result) => {
         console.log(`${values} added to Kits Database`);
-        res.redirect('/newkit')
+        res.redirect(`/kit/${sku}`)
     })
 })
 
