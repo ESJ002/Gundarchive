@@ -16,8 +16,8 @@
     </div>  
     <div class="info-container">
         <% let kitName = `${kit.grades_abbreviation} ${kit.name}`
-        if (kitName.length > 35) {
-            kitName = kitName.substring(0, 32) + '...'
+        if (kitName.length > 28) {
+            kitName = kitName.substring(0, 26) + '...'
         } %>
         <p class="kit-name"><%=kitName%></p>
 

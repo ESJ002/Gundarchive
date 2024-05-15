@@ -1,41 +1,65 @@
-<h1>View Kit</h1>
-
-
-<% if (isLoggedIn) {%>
-
-<div class="header">
-<form action="/favourites" method="post">
-    <input type="hidden" name="kitID" value ="<%= kit.id%>">
-    <input type="hidden" name="sku" value ="<%= kit.sku%>">
-
-    <button>ADD TO FAVOURITES</button>
-</form>
-
-<form action="/backlog" method="post">
-    <input type="hidden" name="kitID" value ="<%= kit.id%>">
-    <input type="hidden" name="sku" value ="<%= kit.sku%>">
-
-    <button>ADD TO BACKLOG</button>
-</form>
-<form action="/completed" method="post">
-    <input type="hidden" name="kitID" value ="<%= kit.id%>">
-    <input type="hidden" name="sku" value ="<%= kit.sku%>">
-
-    <button>ADD TO COMPLETED</button>
-</form>
-</div>
-
-<%}%>
 
 
 
-        <div class="logos">
-        <img src="<%= kit.grades_logo%>" alt="<%= %>" class="grade-logo">
-        <img src="<%= kit.series_logo%>" alt="<%= %>" class="series-logo">
+
+
+
+
+        <div class="view-logos">
+            <div class="view-grade-logo">
+                <img src="<%= kit.grades_logo%>" alt="<%= %>">
+            </div>
+            <div class="view-series-logo">
+                <img src="<%= kit.series_logo%>" alt="<%= %>">
+            </div>
+
+             <h1 class="view-kit-name"><%=`${kit.grades_abbreviation} ${kit.name}`%></h1>
         </div>
-        <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
+
+        <div class="view-kit-container">
+            <div class="view-kit-image">
+                <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
+            </div>
+
+             <div class="view-info">
+                <h3>GRADE</h3>
+                <p><%=kit.grades_fullname%></p>
+                <h3>SERIES</h3>
+                <p><%=kit.series_fullname%></p>
+                <h3>RELEASE DATE</h3>
+                <p><%=kit.date.toString().substring(4,15)%></p>
+                <h3>SKU</h3>
+                <p><%=kit.sku%></p>
+            </div>
+        </div>
             
-        <h2 class="kit-name"><%=`${kit.grades_abbreviation} ${kit.name}`%></h2>
+
+
+        <% if (isLoggedIn) {%>
+
+            <div class="header">
+            <form action="/favourites" method="post">
+                <input type="hidden" name="kitID" value ="<%= kit.id%>">
+                <input type="hidden" name="sku" value ="<%= kit.sku%>">
+            
+                <button>ADD TO FAVOURITES</button>
+            </form>
+            
+            <form action="/backlog" method="post">
+                <input type="hidden" name="kitID" value ="<%= kit.id%>">
+                <input type="hidden" name="sku" value ="<%= kit.sku%>">
+            
+                <button>ADD TO BACKLOG</button>
+            </form>
+            <form action="/completed" method="post">
+                <input type="hidden" name="kitID" value ="<%= kit.id%>">
+                <input type="hidden" name="sku" value ="<%= kit.sku%>">
+            
+                <button>ADD TO COMPLETED</button>
+            </form>
+            </div>
+            
+            <%}%>
            
 
 

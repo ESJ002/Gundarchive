@@ -11,10 +11,12 @@ router.get('/kit/:sku', (req, res) => {
     series_id,
     date,
     sku,
-    kits.image_url, 
+    image_url, 
     series.logo_url series_logo,
+    series.full_name series_fullname,
     grades.logo_url grades_logo,
-    grades.abbreviation grades_abbreviation
+    grades.abbreviation grades_abbreviation,
+    grades.full_name grades_fullname
     FROM 
     kits
     JOIN series 

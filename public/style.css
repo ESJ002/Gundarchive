@@ -1,15 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Comfortaa:300,bold,500,600,700);
-
+@import url(https://fonts.googleapis.com/css?family=Orbitron:regular,500,600,700,800,900);
 body {
     background-color: rgb(0, 0, 39);
     color: rgb(0, 255, 255);
-    font-family: 'Comfortaa';
+    font-family: 'orbitron';
+    font-weight: bold;
     text-align: center;
 
 }
 
 .page-container {
-    width: 800px;
+    width: 900px;
     margin: 0 auto
 }
 
@@ -38,10 +39,11 @@ img {
     color: aqua;
     font-size: 2rem;
     width: 400px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: grid;
     grid-template-columns: 1fr 5fr;
     transition: width 0.3s, font-size 0.3s;
+    font-family: 'orbitron';
 }
 
 .kit-container:hover {
@@ -57,6 +59,7 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 0 auto;
+  grid-gap: 10px
 }
 
 .grade-logo  {
@@ -81,7 +84,7 @@ button {
     cursor: pointer;
     min-width: 200px;
     transition: font-size 0.3s;
-    font-family: 'Comfortaa';
+    font-family: 'orbitron';
   }
 
   button:hover {
@@ -132,3 +135,95 @@ button {
     margin: auto;
     padding: 10px
   }
+
+  .gradient-line-top {
+    height: 18px;
+    background: linear-gradient(90deg, rgba(0,255,255,0) 10%, rgba(0,255,255,1) 50%, rgba(0,0,0,0) 90%);
+  }
+
+  .gradient-line-bottom {
+    margin-top: 20px;
+    height: 18px;
+    background: linear-gradient(90deg, rgba(0,255,255,0) 10%, rgba(0,255,255,1) 50%, rgba(0,0,0,0) 90%);
+  }
+
+  .view-logos {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .view-kit-name {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin: 0 auto;
+    text-transform: uppercase;
+  }
+
+  .view-series-logo, .view-grade-logo {
+    width: 100px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+
+
+  .view-series-logo img, .view-grade-logo img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+
+
+  .view-kit-image {
+    text-align: left;
+    width: 600px;
+    height: 400px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    background: aqua;
+    padding: 5px;
+    border: none;
+    transition: width 0.5s, height 0.5s;
+  }
+
+  .view-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: 10px;
+    text-align: initial;
+    align-items: center;
+  }
+
+
+  .view-kit-image:hover {
+
+    width: 900px;
+    height: 900px;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+
+  }
+
+  .view-kit-image:hover ~ .view-info {
+    display: none;
+  }
+
+  .view-kit-image img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .view-kit-container {
+    display: flex;
+  }
+
+  .view-info p {
+   align-self: first baseline;
+  }
+ 
