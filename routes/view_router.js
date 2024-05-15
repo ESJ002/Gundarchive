@@ -50,7 +50,7 @@ router.get('/kit/:sku', (req, res) => {
     })
 })
 
-router.get('/viewkits', (req,res) => {
+router.get('/viewkits/:page', (req,res) => {
     db.query(`SELECT 
     kits.id, 
     kits.name, 
@@ -73,8 +73,14 @@ router.get('/viewkits', (req,res) => {
     , (err, result) => {
         const kits = result.rows
         db.query
+        const pageNum = Number(req.params.page)
 
-        res.render('viewkits',{kits: kits})
+        const page = {
+            current: pageNum,
+            next: pageNum + 1,
+            previous: pageNum - 1
+        }
+        res.render('viewkits',{allKits: kits, page: page})
     }) 
 })
 

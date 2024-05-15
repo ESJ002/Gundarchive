@@ -1,5 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Comfortaa:300,bold,500,600,700);
 @import url(https://fonts.googleapis.com/css?family=Orbitron:regular,500,600,700,800,900);
+
+@keyframes fadeInMove {
+  0% { opacity: 0; margin-top: 100px;}
+  100% { opacity: 1; margin-top: 0px;}
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1;}
+}
+
 body {
     background-color: rgb(0, 0, 39);
     color: rgb(0, 255, 255);
@@ -7,6 +18,14 @@ body {
     font-weight: bold;
     text-align: center;
 
+}
+
+input {
+  background-color: rgb(0, 0, 39);
+  color: rgb(0, 255, 255);
+  font-family: 'orbitron';
+  border: 1px solid aqua;
+  height: 30px;
 }
 
 .page-container {
@@ -48,19 +67,29 @@ img {
 
 .image-container img, 
 .backlog-image-container img, 
-.completed-image-container img {
+.completed-image-container img,
+.view-series-logo img, 
+.view-grade-logo img, 
+.view-kit-image img{
   height: 100%;
   width: 100%;
   object-fit: contain;
 }
+
+ 
+.view-kit-image img{
+  animation: fadeInMove 1s;
+}
+
+
 
 .kit-container {
     background-color: rgb(0, 0, 39);
     border: 4px solid aqua;
     color: aqua;
     font-size: 2rem;
-    width: 400px;
-    margin-bottom: 10px;
+    width: 445px;
+    margin-bottom: 2.5px;
     display: grid;
     grid-template-columns: 1fr 5fr;
     transition: width 0.3s, font-size 0.3s;
@@ -97,7 +126,7 @@ img {
   grid-template-columns: 1fr 1fr;
   margin: 0 auto;
   margin-top: 20px;
-  grid-gap: 10px
+  grid-gap: 10px;
 }
 
 .grade-logo  {
@@ -208,14 +237,6 @@ button {
     margin-right: 10px;
   }
 
-
-  .view-series-logo img, .view-grade-logo img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-  }
-
-
   .view-kit-image {
     text-align: left;
     width: 600px;
@@ -251,12 +272,6 @@ button {
     display: none;
   }
 
-  .view-kit-image img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-  }
-
   .view-kit-container {
     display: flex;
   }
@@ -273,4 +288,18 @@ button {
   .backlog-button {
     margin-right: 8px;
 
+  }
+
+  .login {
+    margin-bottom: 20px;
+  }
+
+
+  .home-image {
+    object-fit: contain;
+    animation: fadeInMove 3s;
+  }
+
+  .page-pointer button{
+    margin-top: 10px;
   }

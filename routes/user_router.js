@@ -70,7 +70,7 @@ router.get('/profile/:username/favourites', (req,res) => {
     ,[res.locals.currentUser.id], (err, result) => {
         const kits = result.rows
 
-        res.render('viewkits',{kits: kits})
+        res.render('favourites',{kits: kits})
     }) 
 })
 
@@ -82,7 +82,7 @@ router.post('/backlog', (req,res) => {
     
     , [res.locals.currentUser.id, kitID], (err, result) => {
         console.log(`${req.body.sku} added to backlog`);
-        res.redirect(`/kit/${req.body.sku}`)
+        res.redirect(`/profile/${res.locals.currentUser.username}/backlog`)
     })   
     
 })  
@@ -138,11 +138,11 @@ router.post('/completed', (req,res) => {
         console.log(`${req.body.sku} added to completed`);
         if (req.body.fromBacklog === 'true') {
             db.query(`DELETE FROM backlog WHERE id = $1`,[req.body.backID], (err, result) => {
-            res.redirect(`/profile/${res.locals.currentUser.username}/backlog`)
+            res.redirect(`/profile/${res.locals.currentUser.username}/completed`)
    
             })
         } else {
-            res.redirect(`/kit/${req.body.sku}`)
+            res.redirect(`/profile/${res.locals.currentUser.username}/completed`)
         }
     })   
     
