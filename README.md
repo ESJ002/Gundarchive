@@ -1,5 +1,5 @@
 # GUNDARCHIVE
-<img src="/public/IMG_2229.png">
+<img src="/public/IMG_2229.PNG">
 
 A place to view gundam model kits and sort out your curret backlog / build history. 
 https://gundarchive.onrender.com/
