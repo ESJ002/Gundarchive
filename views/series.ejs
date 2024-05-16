@@ -1,0 +1,22 @@
+<h1>SERIES</h1>
+
+
+<div class="series-container">
+
+<% for (let show of series) {%>
+
+    <a href="/series/<%=show.id%>/1">
+<div class="show-container">
+    <div class="logo-container">
+        <img src="<%=show.logo_url%>" alt="<%=show.short_name%>">
+    </div>  
+    <div class="seriesname-container">
+        <p class="series-name"><%=show.short_name%></p>
+    </div>
+       
+</div>
+</a>
+        
+    <% } %>
+
+</div>

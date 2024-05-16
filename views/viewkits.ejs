@@ -4,7 +4,6 @@
     <h2>ADD SOME KITS!</h2>
 
 <%}%>
-
 <div class="grid-container">
 
 
@@ -49,9 +48,10 @@
 
 <% 
 
-if (page.current === 1) {%>
+if (allKits.length <= 12 && page.current === 1 ) {%>
 
-    <a href='/viewkits/<%=page.next%>' class="page-pointer"><button>&#x2B95;</button></a>
+    <%} else if (page.current === 1) {%>
+        <a href='/viewkits/<%=page.next%>'  class="page-pointer"><button>&#x2B95;</button></a>
 
     <%} else if (kits.length < pageLength) {%>
         <a href='/viewkits/<%=page.previous%>'class="page-pointer"><button>&#x2B05;</button></a>

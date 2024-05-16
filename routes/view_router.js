@@ -67,7 +67,6 @@ router.get('/viewkits/:page', (req,res) => {
     
     , (err, result) => {
         const kits = result.rows
-        db.query
         const pageNum = Number(req.params.page)
 
         const page = {
@@ -79,7 +78,90 @@ router.get('/viewkits/:page', (req,res) => {
     }) 
 })
 
+router.get('/series', (req,res) => {
+    db.query(`SELECT * from series;`, (err, result) => {
+        const series = result.rows
+        res.render('series',{series:series})
+       })
+})
 
+router.get('/series/:series/:page', (req,res) => {
+    db.query(`SELECT 
+    kits.id, 
+    kits.name, 
+    grade_id, 
+    series_id,
+    date,
+    sku,
+    kits.image_url, 
+    series.logo_url series_logo,
+    grades.logo_url grades_logo,
+    grades.abbreviation grades_abbreviation
+    FROM 
+    kits
+    JOIN series 
+    ON (kits.series_id = series.id)
+    JOIN grades
+    ON (kits.grade_id = grades.id)
+    WHERE series_id = $1
+    ORDER BY date desc;`
+    
+    , [req.params.series], (err, result) => {
+        
+        const kits = result.rows
+        console.log(kits);
+        const pageNum = Number(req.params.page)
 
+        const page = {
+            current: pageNum,
+            next: pageNum + 1,
+            previous: pageNum - 1
+        }
+        res.render('viewkits',{allKits: kits, page: page})
+    }) 
+})
+
+router.get('/grades', (req,res) => {
+    db.query(`SELECT * from grades;`, (err, result) => {
+        const grades = result.rows
+        res.render('grades',{grades:grades})
+       })
+})
+
+router.get('/grades/:grade/:page', (req,res) => {
+    db.query(`SELECT 
+    kits.id, 
+    kits.name, 
+    grade_id, 
+    series_id,
+    date,
+    sku,
+    kits.image_url, 
+    series.logo_url series_logo,
+    grades.logo_url grades_logo,
+    grades.abbreviation grades_abbreviation
+    FROM 
+    kits
+    JOIN series 
+    ON (kits.series_id = series.id)
+    JOIN grades
+    ON (kits.grade_id = grades.id)
+    WHERE grade_id = $1
+    ORDER BY date desc;`
+    
+    , [req.params.grade], (err, result) => {
+        
+        const kits = result.rows
+        console.log(kits);
+        const pageNum = Number(req.params.page)
+
+        const page = {
+            current: pageNum,
+            next: pageNum + 1,
+            previous: pageNum - 1
+        }
+        res.render('viewkits',{allKits: kits, page: page})
+    }) 
+})
 
 module.exports = router
