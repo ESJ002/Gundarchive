@@ -118,7 +118,7 @@ router.get('/series/:series/:page', (req,res) => {
             next: pageNum + 1,
             previous: pageNum - 1
         }
-        res.render('viewkits',{allKits: kits, page: page, gradeID: null, seriesID: seriesID ,fromGrades: false, fromSeries: true})
+        res.render('viewseries',{allKits: kits, page: page, seriesID: seriesID})
     }) 
 })
 
@@ -162,7 +162,7 @@ router.get('/grades/:grade/:page', (req,res) => {
             next: pageNum + 1,
             previous: pageNum - 1
         }
-        res.render('viewkits',{allKits: kits, page: page, gradeID: gradeID, seriesID: null, fromGrades: true, fromSeries: false})
+        res.render('viewgrades',{allKits: kits, page: page, gradeID: gradeID})
     }) 
 })
 

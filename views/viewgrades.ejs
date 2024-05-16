@@ -44,20 +44,23 @@
 </div>
 
 
-<% if (allKits.length <= 10 && page.current === 1 ) {%>
+<% 
 
-    <%} else if (page.current === 1) {%>
+if (allKits.length <= 10 && page.current === 1 ) {%>
 
-            <a href='/viewkits/<%=page.next%>'  class="page-pointer"><button>&#x2B95;</button></a>
+    <%} else if (page.current === 1) { %>
 
-   <% } else if (kits.length < pageLength) {%>
+    <a href='/grades/<%=gradeID%>/<%=page.next%>'  class="page-pointer"><button>&#x2B95;</button></a>
         
-            <a href='/viewkits/<%=page.previous%>'  class="page-pointer"><button>&#x2B05;</button></a>
-    <%} else {%>
-    
-            <a href='/viewkits/<%=page.previous%>'  class="page-pointer"><button>&#x2B95;</button></a>
-            <a href='/viewkits/<%=page.next%>'  class="page-pointer"><button>&#x2B95;</button></a>
+        
 
+    <% } else if (kits.length < pageLength) {%>
+        
+            <a href='/grades/<%=gradeID%>/<%=page.previous%>'  class="page-pointer"><button>&#x2B05;</button></a>
+       
+    <%} else {%>
+            <a href='/grades/<%=gradeID%>/<%=page.previous%>'  class="page-pointer"><button>&#x2B05;</button></a>
+            <a href='/grades/<%=gradeID%>/<%=page.next%>'  class="page-pointer"><button>&#x2B95;</button></a>
     <%}%>
 
 
