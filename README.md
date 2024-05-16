@@ -23,7 +23,7 @@ As a model kit maker, you are always bound to have a backlog of unbuilt kits to 
 <br>
 It was then my goal to create a space where I can keep track of kits I'm currently yet to built, and kits I've completed. Thus the Gundam Archive, 'Gundarchive' was born.
 <br>
-<img src="/public/readme-images/planhome.PNG">
+<img src="/public/readme-images/planhome.jpg">
 <img src="/public/readme-images/plankits.PNG">
 <img src="/public/readme-images/planview.PNG">
 <br>
