@@ -69,6 +69,17 @@
             
                 <button>ADD TO COMPLETED</button>
             </form>
+
+            <% if (isAdmin) {%>
+
+                <form action="/update/<%=kit.id%>" method="get"> 
+                    <button>UPDATE KIT DETAILS</button>
+                </form>
+                
+                
+                <%}%>
+
+
             </div>
             
             <%}%>

@@ -34,16 +34,11 @@ router.get('/kit/:sku', (req, res) => {
             let favouriteID = null
             let inFavourites = false
             for (let favourite of favourites) {
-                console.log(favourite.fav_kit_id);
-                console.log(kit.id)
                 if (favourite.fav_kit_id === kit.id) {
-                    console.log('match found!');
                     inFavourites = true
                     favouriteID = favourite.id
                 }
             }
-            console.log(inFavourites);
-            console.log(favouriteID);
             res.render('kit', {kit: kit, inFavourites: inFavourites, favouriteID: favouriteID})
         })
         
