@@ -94,9 +94,6 @@ SELECT
     WHERE favourites.fav_user_id = $1
 
     ORDER BY favourites.id desc;
-    
-
-
 
 update kits set image_url = 'https://www.rhyplabuilds.com.au/assets/full/G5061582.jpg?20211119120516' where sku = 'G5061582';
 
@@ -109,10 +106,6 @@ VALUES
 ('Mobile Suit Gundam The Witch From Mercury', 'Witch From Mercury', 'https://en.gundam.info/about-gundam/series-pages/witch/shared/img/top/visual_logo4.png'),
 ('Mobile Suit Gundam Seed Freedom', 'Seed Freedom', 'https://en.gundam.info/about-gundam/series-pages/seedfreedom/img/common/logo/logo.png'),
 ('Neon Genesis Evangelion', 'Evangelion', 'https://static.wikia.nocookie.net/evangelion/images/d/db/Neon_Genesis_Evangelion_Logo_transparent.png');
-
-
-
-
 
 INSERT INTO grades (full_name, abbreviation, logo_url)
 VALUES ('High Grade', 'HG','https://static.wikia.nocookie.net/gunplabuilders/images/4/4a/HGlogo.jpg');

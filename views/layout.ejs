@@ -10,46 +10,38 @@
 </head>
 <body>
     <div class="gradient-line-top"> </div>
+
     <div class="page-container">
 
-<a href="/"><img src="/IMG_2229.PNG" alt="" class="page-logo"></a>
+        <a href="/"><img src="/IMG_2229.PNG" alt="" class="page-logo"></a>
 
-<div class="header">
-    <% if (isAdmin) {%>
+        <div class="header">
+            <% if (isAdmin) {%>
+                <a href="/newkit"><button>NEW</button></a> 
+            <%}%>
 
-        <a href="/newkit"><button>NEW</button></a> 
+            <a href="/viewkits/1"><button>KITS</button></a>
+            <a href="/series"><button>SERIES</button></a>
+            <a href="/grades"><button>GRADES</button></a>
 
-        <%}%>
-<a href="/viewkits/1"><button>KITS</button></a>
-<a href="/series"><button>SERIES</button></a>
-<a href="/grades"><button>GRADES</button></a>
-<% if (isLoggedIn) {%>
+            <% if (isLoggedIn) {%>
+                <a href="/profile/<%=currentUser.username%>"><button>USER</button></a>
+                <form action="/logout?_method=delete" method="post" class="log">
+                    <button>LOGOUT</button>
+                </form>
 
-    <a href="/profile/<%=currentUser.username%>"><button>USER</button></a>
-
-    <form action="/logout?_method=delete" method="post" class="log">
-        <button>LOGOUT</button>
-    </form>
+            <%} else {%>
+                <form action="/login" method="get" class="log">
+                    <button>LOGIN</button>
+                </form>
+            <%}%>
     
-
-    <%} else {%>
-
-        <form action="/login" method="get" class="log">
-            <button>LOGIN</button>
-        </form>
-        
-    <%}%>
-    
-</div>
-
-
+        </div>
 
         <%- body %>
-
-
-
         
     </div>
+    
     <div class="gradient-line-bottom"> </div>
 
     <p class="copyright">&copy 2024</p>

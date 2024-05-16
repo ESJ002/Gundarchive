@@ -1,21 +1,22 @@
 <h1>GRADES</h1>
 
-
 <div class="series-container">
 
-<% for (let grade of grades) {%>
+    <% for (let grade of grades) {%>
+        
+        <a href="/grades/<%=grade.id%>/1">
+        <div class="show-container">
 
-    <a href="/grades/<%=grade.id%>/1">
-<div class="show-container">
-    <div class="logo-container">
-        <img src="<%=grade.logo_url%>" alt="<%=grade.abbreviation%>">
-    </div>  
-    <div class="seriesname-container">
-        <p class="series-name"><%=grade.abbreviation%></p>
-    </div>
-       
-</div>
-</a>
+            <div class="logo-container">
+                <img src="<%=grade.logo_url%>" alt="<%=grade.abbreviation%>">
+            </div>  
+
+            <div class="seriesname-container">
+                <p class="series-name"><%=grade.abbreviation%></p>
+            </div>
+
+        </div>
+        </a>
         
     <% } %>
 

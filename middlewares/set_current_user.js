@@ -11,8 +11,13 @@ function setCurrentUser(req , res, next) {
     }
 
     const sql = `
-    SELECT * FROM users WHERE id = $1;
-    `
+    SELECT 
+        * 
+    FROM 
+        users 
+    WHERE 
+        id = $1
+    ;`
 
     db.query(sql, [req.session.userID], (err,result) => {
         if (err) console.log(err);
@@ -26,6 +31,7 @@ function setCurrentUser(req , res, next) {
         }
 
         next()
+        
     })
 
 }

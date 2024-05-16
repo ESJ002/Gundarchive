@@ -6,17 +6,12 @@
   100% { opacity: 1; margin-top: 0px;}
 }
 
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1;}
-}
-
 body {
-    background-color: rgb(0, 0, 39);
-    color: rgb(0, 255, 255);
-    font-family: 'orbitron';
-    font-weight: bold;
-    text-align: center;
+  background-color: rgb(0, 0, 39);
+  color: rgb(0, 255, 255);
+  font-family: 'orbitron';
+  font-weight: bold;
+  text-align: center;
 
 }
 
@@ -29,8 +24,8 @@ input {
 }
 
 .page-container {
-    width: 900px;
-    margin: 0 auto
+  width: 900px;
+  margin: 0 auto
 }
 
 img {
@@ -38,32 +33,28 @@ img {
 }
 
 .image-container {
-    width: 100px;
-    height: 100px;
-    background-color: aqua;
-    display: flex;
-    padding: 2px;
-    transition: width 0.3s, height 0.3s;
+  width: 100px;
+  height: 100px;
 }
 
 .backlog-image-container {
   width: 150px;
   height: 170px;
-  background-color: aqua;
-  display: flex;
-  padding: 2px;
-  transition: width 0.3s, height 0.3s;
 }
 
 .completed-image-container {
   width: 150px;
   height: 100px;
+}
+
+.image-container,
+.backlog-image-container,
+.completed-image-container {
   background-color: aqua;
   display: flex;
   padding: 2px;
   transition: width 0.3s, height 0.3s;
 }
-
 
 .image-container img, 
 .backlog-image-container img, 
@@ -76,38 +67,32 @@ img {
   width: 100%;
   object-fit: contain;
 }
-
  
-.view-kit-image img{
+.view-kit-image img {
   animation: fadeInMove 1s;
 }
 
-
-
-.kit-container {
-    background-color: rgb(0, 0, 39);
-    border: 4px solid aqua;
-    color: aqua;
-    font-size: 2rem;
-    width: 445px;
-    margin-bottom: 2.5px;
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    transition: width 0.3s, font-size 0.3s;
-    font-family: 'orbitron';
-}
-
+.kit-container,
 .backlog-kit-container {
   background-color: rgb(0, 0, 39);
   border: 4px solid aqua;
   color: aqua;
   font-size: 2rem;
+  display: grid;
+  transition: width 0.3s;
+  font-family: 'orbitron';
+}
+
+.kit-container {
+  width: 445px;
+  margin-bottom: 2.5px;
+  grid-template-columns: 1fr 5fr;
+}
+
+.backlog-kit-container {
   width: 850px;
   margin-bottom: 10px;
-  display: grid;
   grid-template-columns: 1fr 4fr 2fr;
-  transition: width 0.3s, font-size 0.3s;
-  font-family: 'orbitron';
 }
 
 .kit-container:hover {
@@ -130,217 +115,206 @@ img {
   grid-gap: 10px;
 }
 
-.grade-logo  {
-  display: block;
-  margin-right: 3px;
-}
-
+.grade-logo,
 .series-logo {
   display: block;
 }
 
-button {
-    background-color: rgb(0, 0, 39);
-    border: 2px solid aqua;
-    color: aqua;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    min-width: 200px;
-    transition: font-size 0.3s;
-    font-family: 'orbitron';
-  }
-
-  button:hover {
-    background-color: aqua;
-    color: rgb(0, 0, 39);
-    transition: font-size 0.3s;
-  }
-
-  .header {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-
-.grade-logo img {
-  max-height: 100%;
+.grade-logo  {
+  margin-right: 3px;
 }
 
+button {
+  background-color: rgb(0, 0, 39);
+  border: 2px solid aqua;
+  color: aqua;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  min-width: 200px;
+  transition: background-color 0.2s, color 0.2s;
+  font-family: 'orbitron';
+  }
+
+button:hover {
+    background-color: aqua;
+    color: rgb(0, 0, 39);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.header {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.grade-logo img,
 .series-logo img {
   max-height: 100%;
 }
 
-  .logos {
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
-   height: 25px;
-  }
+.logos {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 25px;
+}
 
-  .logged-in {
-    text-align: right;
-  }
+.page-logo {
+  margin-top: 20px
+}
 
-  .page-logo {
-    margin-top: 20px
-  }
+.kit-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  height: 44px;
+}
 
-  .kit-name {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    height: 44px;
-  }
+.info-container {
+  margin: auto;
+  padding: 10px
+}
 
-  .info-container {
-    margin: auto;
-    padding: 10px
-  }
+.gradient-line-top {
+  height: 18px;
+  background: linear-gradient(90deg, rgba(0,255,255,0) 10%, rgba(0,255,255,1) 50%, rgba(0,0,0,0) 90%);
+}
 
-  .gradient-line-top {
-    height: 18px;
-    background: linear-gradient(90deg, rgba(0,255,255,0) 10%, rgba(0,255,255,1) 50%, rgba(0,0,0,0) 90%);
-  }
+.gradient-line-bottom {
+  margin-top: 20px;
+  height: 18px;
+  background: linear-gradient(90deg, rgba(0,255,255,0) 10%, rgba(0,255,255,1) 50%, rgba(0,0,0,0) 90%);
+}
 
-  .gradient-line-bottom {
-    margin-top: 20px;
-    height: 18px;
-    background: linear-gradient(90deg, rgba(0,255,255,0) 10%, rgba(0,255,255,1) 50%, rgba(0,0,0,0) 90%);
-  }
+.view-logos {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
 
-  .view-logos {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
+.view-kit-name {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  margin: 0 auto;
+  text-transform: uppercase;
+}
 
-  .view-kit-name {
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    margin: 0 auto;
-    text-transform: uppercase;
-  }
+.view-series-logo, .view-grade-logo {
+  width: 100px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  margin-right: 10px;
+}
 
-  .view-series-logo, .view-grade-logo {
-    width: 100px;
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    margin-right: 10px;
-  }
+.view-kit-image {
+  text-align: left;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  background: aqua;
+  padding: 5px;
+  border: none;
+  transition: width 0.5s, height 0.5s;
+}
 
-  .view-kit-image {
-    text-align: left;
-    width: 600px;
-    height: 400px;
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    background: aqua;
-    padding: 5px;
-    border: none;
-    transition: width 0.5s, height 0.5s;
-  }
+.view-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-left: 10px;
+  text-align: initial;
+  align-items: center;
+}
 
-  .view-info {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-left: 10px;
-    text-align: initial;
-    align-items: center;
-  }
+.view-kit-image:hover {
+  width: 900px;
+  height: 900px;
+  transition: width 1s, height 1s;
+  cursor: pointer;
+}
 
+.view-kit-image:hover ~ .view-info {
+  display: none;
+}
 
-  .view-kit-image:hover {
+.view-kit-container {
+  display: flex;
+}
 
-    width: 900px;
-    height: 900px;
-    transition: width 1s, height 1s;
-    cursor: pointer;
-
-  }
-
-  .view-kit-image:hover ~ .view-info {
-    display: none;
-  }
-
-  .view-kit-container {
-    display: flex;
-  }
-
-  .view-info p {
-   align-self: first baseline;
-  }
+.view-info p {
+  align-self: first baseline;
+}
  
-  .complete-remove {
-   margin-top: 12px;
-   margin-right: 12px;
-  }
+.complete-remove {
+  margin-top: 12px;
+  margin-right: 12px;
+}
 
-  .backlog-button {
-    margin-right: 8px;
+.backlog-button {
+  margin-right: 8px;
 
-  }
+}
 
-  .login {
-    margin-bottom: 20px;
-  }
+.login {
+  margin-bottom: 20px;
+}
 
+.home-image {
+  object-fit: contain;
+  animation: fadeInMove 3s;
+}
 
-  .home-image {
-    object-fit: contain;
-    animation: fadeInMove 3s;
-  }
+.page-pointer button{
+  margin-top: 10px;
+}
 
-  .page-pointer button{
-    margin-top: 10px;
-  }
+.series-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
 
-  .series-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
+.show-container {
+  width: 210px;
+  border: 2px solid aqua;
+  margin: 10px;
+  transition: width 0.5s
+}
 
-  .show-container {
-    width: 210px;
-    border: 2px solid aqua;
-    margin: 10px;
-    transition: width 0.5s
-  }
+.logo-container {
+  display: flex;
+  background-color: rgb(0, 0, 39);
+  height: 150px;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  transition: padding 0.3s
+}
 
+.show-container:hover {
   .logo-container {
-    display: flex;
-    background-color: rgb(0, 0, 39);
-    height: 150px;
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
+    padding: 6px;
     transition: padding 0.3s
   }
+}
 
-  .show-container:hover {
-    .logo-container {
-      padding: 6px;
-      transition: padding 0.3s
-    }
-  }
-
-  .seriesname-container {
-    color: rgb(0, 0, 39);
-    background-color: aqua;
-    height: 60px;
-    display: block;
-    text-transform: uppercase;
-    padding: 10px;
-    align-items: center;
-    justify-content: center;
-  }
+.seriesname-container {
+  color: rgb(0, 0, 39);
+  background-color: aqua;
+  height: 60px;
+  display: block;
+  text-transform: uppercase;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+}

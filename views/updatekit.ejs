@@ -1,6 +1,6 @@
 <form action="/update/<%=kit.id%>?_method=put" method="post">
     <label for="name">Name</label><br>
-    <input type="text" name="name" value=<%=kit.name%>><br>
+    <input type="text" name="name" value="<%=kit.name%>"><br>
 
     <label for="gradeID">Grade</label><br>
         <select name="gradeID" id="grade" value="<%=kit.grade_id%>">
@@ -29,8 +29,8 @@
         <option value="7">Neon Genesis Evangelion</option>
       </select><br>
 
-      <label for="">Date</label><br>
-      <input type="text" name="date" placeholder="<%=kit.date%>" onfocus="(this.type='date')"><br>
+      <label for="">Date (Currently <%=kit.date.toString().substring(4,15)%>)</label><br>
+      <input type="date" name="date"><br>
 
       <label for="">SKU</label><br>
       <input type="text" name="sku" value="<%=kit.sku%>"><br>
@@ -38,5 +38,5 @@
       <label for="">Image URL</label><br>
       <input type="text" name="imageURL" value="<%=kit.image_url%>"><br>
 
-      <button type="submit">Submit</button>
+      <button type="submit">SUBMIT</button>
 </form>

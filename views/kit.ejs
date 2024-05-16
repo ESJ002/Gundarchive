@@ -1,88 +1,77 @@
+<div class="view-logos">
 
+    <div class="view-grade-logo">
+        <img src="<%= kit.grades_logo%>" alt="<%= %>">
+    </div>
 
+    <div class="view-series-logo">
+        <img src="<%= kit.series_logo%>" alt="<%= %>">
+    </div>
 
+    <h1 class="view-kit-name"><%=`${kit.grades_abbreviation} ${kit.name}`%></h1>
 
+</div>
 
+<div class="view-kit-container">
 
+    <div class="view-kit-image">
+        <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
+    </div>
 
-        <div class="view-logos">
-            <div class="view-grade-logo">
-                <img src="<%= kit.grades_logo%>" alt="<%= %>">
-            </div>
-            <div class="view-series-logo">
-                <img src="<%= kit.series_logo%>" alt="<%= %>">
-            </div>
+    <div class="view-info">
+        <h3>GRADE</h3>
+        <p><%=kit.grades_fullname%></p>
+        <h3>SERIES</h3>
+        <p><%=kit.series_fullname%></p>
+        <h3>RELEASE DATE</h3>
+        <p><%=kit.date.toString().substring(4,15)%></p>
+        <h3>SKU</h3>
+        <p><%=kit.sku%></p>
+    </div>
 
-             <h1 class="view-kit-name"><%=`${kit.grades_abbreviation} ${kit.name}`%></h1>
-        </div>
-
-        <div class="view-kit-container">
-            <div class="view-kit-image">
-                <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
-            </div>
-
-             <div class="view-info">
-                <h3>GRADE</h3>
-                <p><%=kit.grades_fullname%></p>
-                <h3>SERIES</h3>
-                <p><%=kit.series_fullname%></p>
-                <h3>RELEASE DATE</h3>
-                <p><%=kit.date.toString().substring(4,15)%></p>
-                <h3>SKU</h3>
-                <p><%=kit.sku%></p>
-            </div>
-        </div>
+</div>
             
+<% if (isLoggedIn) {%>
 
+    <div class="header">
 
-        <% if (isLoggedIn) {%>
-
-            <div class="header">
-                <% if (inFavourites) {%>
+        <% if (inFavourites) {%>
             <form action="/favourites?_method=delete" method="post">
                 <input type="hidden" name="favID" value ="<%=favouriteID%>">
                 <input type="hidden" name="sku" value ="<%= kit.sku%>">
-            
                 <button>REMOVE FROM FAVOURITES</button>
             </form>
-            <%} else {%>
 
-
-                 <form action="/favourites" method="post">
+        <%} else {%>
+            <form action="/favourites" method="post">
                 <input type="hidden" name="kitID" value ="<%= kit.id%>">
                 <input type="hidden" name="sku" value ="<%=kit.sku%>">
-            
                 <button>ADD TO FAVOURITES</button>
             </form>
-            %> <%}%>
+        <%}%>
             
-            <form action="/backlog" method="post">
-                <input type="hidden" name="kitID" value ="<%=kit.id%>">
-                <input type="hidden" name="sku" value ="<%= kit.sku%>">
-            
-                <button>ADD TO BACKLOG</button>
+        <form action="/backlog" method="post">
+            <input type="hidden" name="kitID" value ="<%=kit.id%>">
+            <input type="hidden" name="sku" value ="<%= kit.sku%>">
+            <button>ADD TO BACKLOG</button>
+        </form>
+
+        <form action="/completed" method="post">
+            <input type="hidden" name="kitID" value ="<%= kit.id%>">
+            <input type="hidden" name="sku" value ="<%= kit.sku%>">
+            <input type="hidden" name="fromBacklog" value ='false'>
+            <button>ADD TO COMPLETED</button>
+        </form>
+
+        <% if (isAdmin) {%>
+            <form action="/update/<%=kit.id%>" method="get"> 
+                <button>UPDATE KIT DETAILS</button>
             </form>
-            <form action="/completed" method="post">
-                <input type="hidden" name="kitID" value ="<%= kit.id%>">
-                <input type="hidden" name="sku" value ="<%= kit.sku%>">
-                <input type="hidden" name="fromBacklog" value ='false'>
+        <%}%>
+
+    </div>
             
-                <button>ADD TO COMPLETED</button>
-            </form>
-
-            <% if (isAdmin) {%>
-
-                <form action="/update/<%=kit.id%>" method="get"> 
-                    <button>UPDATE KIT DETAILS</button>
-                </form>
-                
-                
-                <%}%>
-
-
-            </div>
-            
-            <%}%>
+<%}%>
            
 
 

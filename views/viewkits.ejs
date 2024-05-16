@@ -4,40 +4,39 @@
     <h2>ADD SOME KITS!</h2>
 
 <%}%>
-<div class="grid-container">
 
+<div class="grid-container">
 
 <% const pageLength = 10
     const startIndex = (page.current - 1) * pageLength
     const kits = allKits.slice(startIndex, startIndex + pageLength)
 
- for (let kit of kits) {%>
+    for (let kit of kits) {%>
+        <a href="/kit/<%=kit.sku%>">
+        <div class="kit-container">
+            <div class="image-container">
+                <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
+            </div>  
+            <div class="info-container">
+                <% let kitName = `${kit.grades_abbreviation} ${kit.name}`
+                if (kitName.length > 28) {
+                    kitName = kitName.substring(0, 26) + '...'
+                } %>
+                <p class="kit-name"><%=kitName%></p>
 
-    <a href="/kit/<%=kit.sku%>">
-<div class="kit-container">
-    <div class="image-container">
-        <img src="<%=kit.image_url%>" alt="<%=kit.name%>">
-    </div>  
-    <div class="info-container">
-        <% let kitName = `${kit.grades_abbreviation} ${kit.name}`
-        if (kitName.length > 28) {
-            kitName = kitName.substring(0, 26) + '...'
-        } %>
-        <p class="kit-name"><%=kitName%></p>
+                <div class="logos">
+                    <div class="grade-logo">
+                        <img src="<%= kit.grades_logo%>" alt="<%= %>">
+                    </div>
+                    <div class="series-logo">
+                        <img src="<%= kit.series_logo%>" alt="<%= %>">
+                    </div>
+                </div>
 
-        <div class="logos">
-            <div class="grade-logo">
-                <img src="<%= kit.grades_logo%>" alt="<%= %>">
             </div>
-            <div class="series-logo">
-                <img src="<%= kit.series_logo%>" alt="<%= %>">
-            </div>
-        </div>
-
-    </div>
        
-</div>
-</a>
+        </div>
+        </a>
         
     <% } %>
 
@@ -46,19 +45,20 @@
 
 <% if (allKits.length <= 10 && page.current === 1 ) {%>
 
-    <%} else if (page.current === 1) {%>
+<%} else if (page.current === 1) {%>
 
-            <a href='/viewkits/<%=page.next%>'  class="page-pointer"><button>&#x2B95;</button></a>
+    <a href='/viewkits/<%=page.next%>'  class="page-pointer"><button>&#x2B95;</button></a>
 
-   <% } else if (kits.length < pageLength) {%>
+<% } else if (kits.length < pageLength) {%>
         
-            <a href='/viewkits/<%=page.previous%>'  class="page-pointer"><button>&#x2B05;</button></a>
-    <%} else {%>
-    
-            <a href='/viewkits/<%=page.previous%>'  class="page-pointer"><button>&#x2B05;</button></a>
-            <a href='/viewkits/<%=page.next%>'  class="page-pointer"><button>&#x2B95;</button></a>
+    <a href='/viewkits/<%=page.previous%>'  class="page-pointer"><button>&#x2B05;</button></a>
 
-    <%}%>
+<%} else {%>
+    
+    <a href='/viewkits/<%=page.previous%>'  class="page-pointer"><button>&#x2B05;</button></a>
+    <a href='/viewkits/<%=page.next%>'  class="page-pointer"><button>&#x2B95;</button></a>
+
+<%}%>
 
 
 

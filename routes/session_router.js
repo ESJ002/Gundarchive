@@ -5,21 +5,28 @@ const bcrypt = require('bcrypt')
 const createNewUser = require('../middlewares/create_new_user')
 
 router.get('/login', (req,res) => {
+
     res.render('login')
+
 })
 
 router.post('/login', (req,res) => {
-    // 1. Get email and password from request
+    
     const username = req.body.username
     const plainTextPassword = req.body.password
 
     const sql = `
-    SELECT * 
-    FROM users
-    WHERE username = $1;
-    `
+    SELECT 
+        * 
+    FROM 
+        users
+    WHERE 
+        username = $1
+    ;`
 
     db.query(sql, [username], (err, result) => {
+        if (err) console.log(err)
+
         const user = result.rows[0];
 
         if (err) {
@@ -32,6 +39,7 @@ router.post('/login', (req,res) => {
         }
 
         const hashedPassword = user.password_digest
+
         bcrypt.compare(plainTextPassword, hashedPassword, (err, isCorrect) => {
             if (err) console.log(err);
 
@@ -53,6 +61,7 @@ router.post('/login', (req,res) => {
 router.get('/newuser', (req,res) => {
 
     res.render(`newuser`)
+
 })
 
 router.post('/newuser', (req,res) => {
@@ -63,13 +72,15 @@ router.post('/newuser', (req,res) => {
     createNewUser(username, password)
     res.redirect('/login')
         
-    })
+})
     
 
 
 router.delete('/logout', (req,res) => {
+
     req.session.userID = null
     res.redirect('/login')
+
 })
 
 module.exports = router

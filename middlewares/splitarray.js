@@ -1,3 +1,5 @@
+
+
 let allKits = [
     { "ID": 1, "name": "RX-78-2 Gundam", "grade": "HG" },
     { "ID": 2, "name": "MS-06 Zaku II", "grade": "MG" },

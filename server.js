@@ -7,11 +7,13 @@ const expressLayouts = require('express-ejs-layouts')
 const db = require('./db')
 const methodOverride = require('method-override')
 const session = require('express-session')
+
 const userRouter = require('./routes/user_router')
 const sessionRouter = require('./routes/session_router')
 const homeRouter = require('./routes/home_router')
 const viewRouter = require('./routes/view_router')
 const adminRouter = require('./routes/admin_router')
+
 const setCurrentUser = require('./middlewares/set_current_user')
 const ensureLoggedIn = require('./middlewares/ensure_logged_in')
 const ensureAdmin = require('./middlewares/ensure_admin')
@@ -31,7 +33,6 @@ app.use(session({
 }))
 
 app.use(setCurrentUser)
-
 
 app.use(homeRouter)
 app.use(viewRouter)
