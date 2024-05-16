@@ -74,7 +74,7 @@ router.get('/viewkits/:page', (req,res) => {
             next: pageNum + 1,
             previous: pageNum - 1
         }
-        res.render('viewkits',{allKits: kits, page: page})
+        res.render('viewkits',{allKits: kits, page: page, gradeID: null, seriesID: null ,fromGrades: false, fromSeries: true})
     }) 
 })
 
@@ -86,6 +86,7 @@ router.get('/series', (req,res) => {
 })
 
 router.get('/series/:series/:page', (req,res) => {
+    const seriesID = req.params.series
     db.query(`SELECT 
     kits.id, 
     kits.name, 
@@ -106,7 +107,7 @@ router.get('/series/:series/:page', (req,res) => {
     WHERE series_id = $1
     ORDER BY date desc;`
     
-    , [req.params.series], (err, result) => {
+    , [seriesID], (err, result) => {
         
         const kits = result.rows
         console.log(kits);
@@ -117,7 +118,7 @@ router.get('/series/:series/:page', (req,res) => {
             next: pageNum + 1,
             previous: pageNum - 1
         }
-        res.render('viewkits',{allKits: kits, page: page})
+        res.render('viewkits',{allKits: kits, page: page, gradeID: null, seriesID: seriesID ,fromGrades: false, fromSeries: true})
     }) 
 })
 
@@ -129,6 +130,7 @@ router.get('/grades', (req,res) => {
 })
 
 router.get('/grades/:grade/:page', (req,res) => {
+    const gradeID = req.params.grade
     db.query(`SELECT 
     kits.id, 
     kits.name, 
@@ -149,7 +151,7 @@ router.get('/grades/:grade/:page', (req,res) => {
     WHERE grade_id = $1
     ORDER BY date desc;`
     
-    , [req.params.grade], (err, result) => {
+    , [gradeID], (err, result) => {
         
         const kits = result.rows
         console.log(kits);
@@ -160,7 +162,7 @@ router.get('/grades/:grade/:page', (req,res) => {
             next: pageNum + 1,
             previous: pageNum - 1
         }
-        res.render('viewkits',{allKits: kits, page: page})
+        res.render('viewkits',{allKits: kits, page: page, gradeID: gradeID, seriesID: null, fromGrades: true, fromSeries: false})
     }) 
 })
 

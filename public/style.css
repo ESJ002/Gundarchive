@@ -317,9 +317,6 @@ button {
     transition: width 0.5s
   }
 
-
- 
-
   .logo-container {
     display: flex;
     background-color: rgb(0, 0, 39);
@@ -347,4 +344,3 @@ button {
     align-items: center;
     justify-content: center;
   }
-
