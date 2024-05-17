@@ -45,7 +45,7 @@
 
     <a href='/series/<%=seriesID%>/<%=page.next%>'  class="page-pointer"><button>&#x2B95;</button></a>
         
-<% } else if (kits.length < pageLength) {%>
+<% } else if (kits.length < pageLength || pageLength * page.current ===  allKits.length) {%>
         
     <a href='/series/<%=seriesID%>/<%=page.previous%>'  class="page-pointer"><button>&#x2B05;</button></a>
 
